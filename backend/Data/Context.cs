@@ -21,6 +21,14 @@ namespace backend.Data
                 .HasForeignKey(t => t.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username)
+                .IsUnique();
+
+            modelBuilder.Entity<User>()
+                .Property(u => u.Password)
+                .IsRequired();
+
             base.OnModelCreating(modelBuilder);
         }
     }
