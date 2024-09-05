@@ -17,7 +17,7 @@ public class AuthController: ControllerBase
         _context = context;
     }
 
-    [HttpPost]
+    [HttpPost("sign-up")]
     public async Task<IActionResult> Register([FromBody] RegisterModel model)
     {
         if(await _context.Users.AnyAsync(u => u.Username == model.Username))
