@@ -18,7 +18,8 @@ namespace backend.Data
             modelBuilder.Entity<Todo>()
                 .HasOne(t => t.User)
                 .WithMany(u => u.Todos)
-                .HasForeignKey(t => t.UserId);
+                .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }
