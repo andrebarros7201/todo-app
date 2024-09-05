@@ -12,5 +12,15 @@ namespace backend.Data
 
         public DbSet<Todo> Todos { get; set; }
         public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Todo>()
+                .HasOne(t => t.User)
+                .WithMany(u => u.Todos)
+                .HasForeignKey(t => t.UserId);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
